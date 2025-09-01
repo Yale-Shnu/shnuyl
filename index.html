@@ -3,1201 +3,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>妙题智选：教研论文选题参考与评价工具</title>
-    <!-- 本地化XLSX库引用 -->
-    <script src="xlsx.full.min.js"></script>
+    <title>页面已迁移 - 写作助手</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body {
-            font-family: 'Microsoft YaHei', Arial, sans-serif;
-            line-height: 1.6;
+        * {
             margin: 0;
-            padding: 20px;
-            background-color: #f5f5f5;
-            color: #333;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            text-align: center;
-            color: #2c3e50;
-            margin-bottom: 30px;
-        }
-        p, h1 {
-            margin-top: 0.1em;
-            margin-bottom: 0.1em;
-        }
-        h2 {
-            color: #3498db;
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 5px;
-            margin-top: 30px;
-        }
-        .section {
-            margin-bottom: 30px;
-        }
-        .criteria-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-        }
-        .criteria-table th, .criteria-table td {
-            border: 1px solid #ddd;
-            padding: 12px;
-            text-align: left;
-        }
-        .criteria-table th {
-            background-color: #3498db;
-            color: white;
-        }
-        .criteria-table tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-        textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            min-height: 100px;
-            font-family: inherit;
-            margin-bottom: 15px;
-        }
-        button {
-            background-color: #3498db;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s;
-        }
-        button:hover {
-            background-color: #2980b9;
-        }
-        .file-input {
-            margin: 20px 0;
-        }
-        .result-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-        }
-        .result-table th, .result-table td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-        .result-table th {
-            background-color: #2ecc71;
-            color: white;
-        }
-        .result-table tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-        .loading {
-            display: none;
-            text-align: center;
-            margin: 20px 0;
-        }
-        .spinner {
-            border: 5px solid #f3f3f3;
-            border-top: 5px solid #3498db;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        .tabs {
+        
+        body {
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            min-height: 100vh;
             display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            padding: 40px;
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        .icon {
+            font-size: 64px;
+            color: #7c5ac2;
             margin-bottom: 20px;
         }
-        .tab {
-            padding: 10px 20px;
-            cursor: pointer;
-            background-color: #eee;
-            margin-right: 5px;
-            border-radius: 5px 5px 0 0;
-        }
-        .tab.active {
-            background-color: #3498db;
-            color: white;
-        }
-        .tab-content {
-            display: none;
-        }
-        .tab-content.active {
-            display: block;
-        }
-        .error {
-            color: #e74c3c;
-            margin: 10px 0;
-        }
-        .success {
-            color: #2ecc71;
-            margin: 10px 0;
-        }
-        .dimension-description {
-            font-size: 0.9em;
-            color: #666;
-            margin-top: 5px;
-        }
-        .keyword-input-container {
-            display: flex;
-            gap: 10px;
+        
+        h1 {
+            color: #333;
             margin-bottom: 15px;
-            flex-wrap: wrap;
+            font-weight: 600;
         }
-        .keyword-input {
-            padding: 8px 12px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            flex-grow: 1;
-            min-width: 200px;
+        
+        p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            font-size: 18px;
         }
-        .generated-topics {
-            margin-top: 20px;
+        
+        .url-box {
+            background: #f5f7ff;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 25px 0;
+            word-break: break-all;
+            border: 1px dashed #7c5ac2;
         }
-        .topic-item {
-            padding: 10px;
-            border-left: 4px solid #3498db;
-            background-color: #f8f9fa;
-            margin-bottom: 10px;
+        
+        .url {
+            color: #5a67d8;
+            font-size: 16px;
         }
-        .copy-btn {
-            background-color: #2ecc71;
-            margin-left: 10px;
-            padding: 3px 8px;
-            font-size: 12px;
-        }
-        .copy-btn:hover {
-            background-color: #27ae60;
-        }
-        .theory-tag {
-            display: inline-block;
-            background-color: #e74c3c;
+        
+        .btn {
+            background: linear-gradient(to right, #7c5ac2, #6a82fb);
             color: white;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-size: 12px;
-            margin-left: 8px;
+            border: none;
+            padding: 16px 40px;
+            font-size: 18px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(122, 90, 194, 0.3);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(122, 90, 194, 0.4);
+        }
+        
+        .btn:active {
+            transform: translateY(1px);
+        }
+        
+        .btn i {
+            margin-left: 10px;
+            transition: transform 0.3s ease;
+        }
+        
+        .btn:hover i {
+            transform: translateX(5px);
+        }
+        
+        .hint {
+            margin-top: 25px;
+            font-size: 14px;
+            color: #999;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            p {
+                font-size: 16px;
+            }
+            
+            .btn {
+                padding: 14px 30px;
+                font-size: 16px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <p align="center">· 通识学术写作 ·</p>
-        <h1>妙题智选：教研论文选题参考与评价工具</h1>
-        <p align="center">基于deepseek-V3大模型</p>
-       
-        <div class="tabs">
-            <div class="tab active" onclick="switchTab('single')">单个选题评价</div>
-            <div class="tab" onclick="switchTab('batch')">批量选题评价</div>
-            <div class="tab" onclick="switchTab('generate')">智能选题生成</div>
+        <div class="icon">
+            <i class="fas fa-map-signs"></i>
+        </div>
+        <h1>页面已迁移</h1>
+        <p>本页内容已迁到下面的地址，点击下方按钮访问新页面</p>
+        
+        <div class="url-box">
+            <span class="url">https://customproject.kmelearning.com/ai-view/index.html#/writing-assistant</span>
         </div>
         
-        <div id="single-tab" class="tab-content active">
-            <div class="section">
-                <h2>选题评价标准</h2>
-                <p>本评价工具采用科学、专业的评价体系，从五个维度对教研论文选题进行评价，满分100分。</p>
-                
-                <table class="criteria-table">
-                    <thead>
-                        <tr>
-                            <th>评价维度</th>
-                            <th>权重</th>
-                            <th>评价标准</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <strong>范围适切性</strong>
-                                <div class="dimension-description">选题范围或问题聚焦点的大小</div>
-                            </td>
-                            <td>15分</td>
-                            <td>选题范围大小适中，避免过于宽泛或狭窄</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <strong>学术价值</strong>
-                                <div class="dimension-description">选题的理论意义和学术贡献</div>
-                            </td>
-                            <td>30分</td>
-                            <td>选题的理论意义、学术前沿性、创新性</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <strong>实践意义</strong>
-                                <div class="dimension-description">选题对教学实践的指导价值</div>
-                            </td>
-                            <td>20分</td>
-                            <td>选题对教育实践的指导价值、应用前景、可推广性</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <strong>可行性</strong>
-                                <div class="dimension-description">研究实施的可行性</div>
-                            </td>
-                            <td>10分</td>
-                            <td>研究条件、数据获取、研究方法可行性</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <strong>表述清晰度</strong>
-                                <div class="dimension-description">选题表述的明确程度</div>
-                            </td>
-                            <td>25分</td>
-                            <td>文字的简明性、概念的准确性以及表述的逻辑性</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            
-            <div class="section">
-                <h2>单个选题评价</h2>
-                <p>请输入您要评价的教研论文选题：</p>
-                <textarea id="topic-input" placeholder="例如：基于核心素养的高中数学课堂教学策略研究"></textarea>
-                <button onclick="evaluateSingleTopic()">评价选题</button>
-                
-                <div id="loading-single" class="loading">
-                    <div class="spinner"></div>
-                    <p>正在评估中，请稍候...</p>
-                </div>
-                
-                <div id="result-single" style="display: none;">
-                    <h3>评价结果</h3>
-                    <table class="result-table">
-                        <thead>
-                            <tr>
-                                <th>评价维度</th>
-                                <th>得分</th>
-                                <th>评价意见</th>
-                            </tr>
-                        </thead>
-                        <tbody id="result-single-body">
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <th>总分</th>
-                                <th id="total-score">0</th>
-                                <th id="total-comment"></th>
-                            </tr>
-                        </tfoot>
-                    </table>
-                </div>
-                
-                <div id="error-single" class="error" style="display: none;"></div>
-            </div>
-        </div>
+        <button class="btn" onclick="redirectToNewPage()">
+            访问新页面 <i class="fas fa-arrow-right"></i>
+        </button>
         
-        <div id="batch-tab" class="tab-content">
-            <div class="section">
-                <h2>批量选题评价</h2>
-                <p>请导入包含选题的Excel文件（第一列应为选题内容）：</p>
-                
-                <div class="file-input">
-                    <input type="file" id="file-input" accept=".xlsx,.xls,.csv" />
-                    <button onclick="importFile()">导入文件</button>
-                </div>
-                
-                <div id="import-result" style="display: none;">
-                    <h3>导入的选题</h3>
-                    <div id="imported-topics" style="max-height: 300px; overflow-y: auto; margin-bottom: 20px;"></div>
-                    <button onclick="evaluateBatchTopics()">批量评价</button>
-                </div>
-                
-                <div id="loading-batch" class="loading">
-                    <div class="spinner"></div>
-                    <p>正在批量评估中，请稍候...</p>
-                </div>
-                
-                <div id="result-batch" style="display: none;">
-                    <h3>批量评价结果</h3>
-                    <div id="batch-result-table" style="overflow-x: auto;"></div>
-                    <button onclick="exportToExcel()" style="margin-top: 20px;">导出Excel</button>
-                </div>
-                
-                <div id="error-batch" class="error" style="display: none;"></div>
-            </div>
-        </div>
-        
-        <div id="generate-tab" class="tab-content">
-            <div class="section">
-                <h2>智能选题生成</h2>
-                <p>请输入1-3个关键词（至少一个），系统将为您生成8个教研论文参考选题：</p>
-                
-                <div class="keyword-input-container">
-                    <input type="text" id="keyword1" class="keyword-input" placeholder="关键词1（必填）">
-                    <input type="text" id="keyword2" class="keyword-input" placeholder="关键词2（可选）">
-                    <input type="text" id="keyword3" class="keyword-input" placeholder="关键词3（可选）">
-                </div>
-                
-                <button onclick="generateTopics()">生成选题</button>
-                
-                <div id="loading-generate" class="loading">
-                    <div class="spinner"></div>
-                    <p>正在生成选题，请稍候...</p>
-                </div>
-                
-                <div id="error-generate" class="error" style="display: none;"></div>
-                
-                <div id="generated-topics" class="generated-topics" style="display: none;">
-                    <h3>生成的参考选题</h3>
-                    <p>点击选题可复制到剪贴板，带<span class="theory-tag">理论</span>标记的题目引入了跨学科理论视角。</p>
-                    <div id="topic-list"></div>
-                </div>
-            </div>
-        </div>
+        <p class="hint">如果浏览器没有自动跳转，请点击上方按钮</p>
     </div>
-    <footer style="text-align: center;">
-        <br>
-        <img src="logo1.png" alt="版权图标" width="25" height="25"><br>
-        <div>© 2025 手把手 · AI工具系列 | SHNUYL版权所有</div>
-    </footer>
+
     <script>
-        const DEEPSEEK_API_KEY = 'sk-91f59c7b2df94d6b87084bccdc8004e9';
-        const DEEPSEEK_API_ENDPOINT = 'https://api.deepseek.com/chat/completions';
-        const MODEL_NAME = 'deepseek-chat';
-
-        let batchTopics = [];
-        let batchResults = [];
-        
-        // 增强的XLSX库加载检查
-        function ensureXLSXLoaded() {
-            return new Promise((resolve, reject) => {
-                if (typeof XLSX !== 'undefined') {
-                    console.log('XLSX库已加载');
-                    resolve();
-                    return;
-                }
-                
-                console.log('尝试加载XLSX库...');
-                const script = document.createElement('script');
-                script.src = 'xlsx.full.min.js';
-                script.onload = () => {
-                    console.log('XLSX库加载成功');
-                    resolve();
-                };
-                script.onerror = () => {
-                    console.error('XLSX库加载失败');
-                    reject(new Error('无法加载Excel处理库'));
-                };
-                document.head.appendChild(script);
-            });
-        }
-
-        // 文件读取兼容函数
-        function readFileAsArrayBuffer(file) {
-            return new Promise((resolve, reject) => {
-                // 优先使用HTML Executable的API（如果可用）
-                if (typeof htmlExe !== 'undefined' && htmlExe.ReadFile) {
-                    try {
-                        console.log('使用HTML Executable API读取文件');
-                        const data = htmlExe.ReadFile(file.name);
-                        resolve(new Uint8Array(data));
-                        return;
-                    } catch (e) {
-                        console.warn('HTML Executable API读取失败，回退到标准方法:', e);
-                    }
-                }
-                
-                // 标准FileReader方法
-                const reader = new FileReader();
-                reader.onload = (e) => {
-                    if (e.target.result instanceof ArrayBuffer) {
-                        resolve(new Uint8Array(e.target.result));
-                    } else {
-                        reject(new Error('不支持的文件格式'));
-                    }
-                };
-                reader.onerror = (e) => {
-                    reject(new Error('文件读取失败'));
-                };
-                reader.readAsArrayBuffer(file);
-            });
-        }
-
-        // 切换标签页
-        function switchTab(tabName) {
-            document.querySelectorAll('.tab').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            document.querySelectorAll('.tab-content').forEach(content => {
-                content.classList.remove('active');
-            });
-            
-            document.querySelector(`.tab[onclick="switchTab('${tabName}')"]`).classList.add('active');
-            document.getElementById(`${tabName}-tab`).classList.add('active');
+        function redirectToNewPage() {
+            window.location.href = "https://customproject.kmelearning.com/ai-view/index.html#/writing-assistant";
         }
         
-        // 评价单个选题
-        async function evaluateSingleTopic() {
-            const topic = document.getElementById('topic-input').value.trim();
-            if (!topic) {
-                showError('请输入要评价的选题', 'single');
-                return;
-            }
-            
-            document.getElementById('loading-single').style.display = 'block';
-            document.getElementById('result-single').style.display = 'none';
-            document.getElementById('error-single').style.display = 'none';
-            
-            try {
-                const prompt = `你是一个教育研究专家，请根据以下评价标准对教研论文选题"${topic}"进行评分和评价：
-                
-                评价维度及权重：
-                1. 范围适切性（15分）：选题是否大小适中，避免过于宽泛或狭窄
-示例评分应用：
-高分（12-14分）：如"小学语文课堂中学生偏离主题行为及应对策略研究——以S市P小学中高年级为例"，范围明确（特定行为+学段+区域），切口小。
-低分（<10分）：如"小学劳动教育现状及提升策略研究"，范围过大，缺乏具体场景或变量聚焦。
-
-                2. 学术价值（30分）：选题的理论意义、学术前沿性、创新性
-                3. 实践意义（20分）：选题对教育实践的指导价值、应用前景、可推广性
-                4. 可行性（10分）：研究条件、数据获取、研究方法可行性
-                5. 表述清晰度（25分）：文字的简明性、概念的准确性以及表述的逻辑性
-                
-                评分要求：
-                - 每个维度的评分必须是整数
-                - 各维度得分一般不给满分，要酌情扣分
-                - 学术价值维度，选题如果创新性不够，则该项评分最多不超过20分
-                - 如果是批量导入要区分中选题的优中差的等级差别
-                - 总分必须等于各维度得分之和
-                - 评价意见应聚焦在选题及其表述本身，选题反应不出来的内容不必点评
-                - 如果选题表述存在逻辑问题，或选题的内容领域偏大，问题不聚焦的话，该项评分最多不超过20分
-                - 凡选题中包含"核心素养""任务群""大单元""大概念"的学术价值维度不超过18分，总分不超过80分
-                - 如果不是现状调查类的选题，题目表述最好通常有2-3个核心概念，否则选题部分评分不超过80分
-                - 评价意见应具体、有针对性
-                - 在"总分"栏的"评价意见"中给出选题及表述的优化建议和示例（示例选题应包含2-3个核心概念，可适当引入教育学、心理学、语言学或文学理论等相关学科的理论或研究视角）：
-示例评分应用：
-
-·原选题 "小学语文课堂互动研究" 过于宽泛，缺乏具体的研究视角、对象或方法，导致研究难以聚焦。建议从以下角度进行细化：
-
-1. 限定研究视角或理论框架
-增加理论支撑[如多模态理论、社会建构主义、建构整合模型 (CIM)、大脑阅读回路理论、具身认知与数字阅读、数字写作的 “注意力经济”、动态文本理解理论 (DTRA)、认知负荷与多媒体学习、数字素养与 “游戏化学习”、合作沟通理论、语言预测加工理论、个性化数字阅读、网络化叙事 (Networked Narratives)、深度阅读的神经机制、成就情绪理论 (Control-Value Theory of Achievement Emotions)、直接指导理论 (Direct Instruction)、探究社区框架 (Community of Inquiry Framework)、理想难度理论 (Desirable Difficulties)、自我决定理论 (Self-Determination Theory)、语料库语言学与语言习得 (Corpus Linguistics and Language Acquisition)、情境化学习理论 (Situated Learning Theory)、实践共同体理论 (Communities of Practice)、发现学习理论 (Discovery Learning)、社会文化视角下的行动理论 (Sociocultural Theory of Action)等等]。比如：
-"多模态理论视域下小学语文课堂师生互动策略研究"
-"社会建构主义理论下小学语文课堂小组互动模式探究"
-
-2. 聚焦研究对象或学段
-明确研究的具体群体（如新手教师、低年级学生等）。比如：
-"小学低年级语文课堂师生言语互动特征研究"
-"新手型小学语文教师课堂提问互动行为分析"
-
-3. 细化互动类型或具体行为
-限定互动形式（如提问、反馈、非言语互动等）。比如：
-"小学语文课堂教师反馈语对学生参与度的影响研究"
-"小学高年级语文课堂生生互动的有效性研究"
-
-4. 结合现实问题或应用场景
-联系实际教学痛点（如沉默现象、偏离主题行为等）。比如：
-"小学语文课堂学生消极沉默的互动干预策略研究"
-"线上与线下小学语文课堂互动效率的实证研究"
-
-5. 增加研究方法或区域限定
-采用案例研究、实验对比等，或限定研究范围（如某地区、某学校）。比如：
-"上海市X小学语文课堂师生互动模式的个案研究"
-"对话教学法在小学语文课堂互动中的应用效果实验研究"
-
-·修改后选题示例（按优化方向组合）
-理论+对象："社会文化理论下小学语文课堂新手教师互动策略研究"
-行为+问题："小学语文课堂教师提问等待时间对学生互动参与的影响"
-方法+场景："基于视频分析的小学语文优质课师生互动特征研究"
-
-                
-                请按照以下JSON格式返回结果：
-                {
-                    "appropriateness": {"score": x, "comment": "..."},
-                    "academic_value": {"score": x, "comment": "..."},
-                    "practical_significance": {"score": x, "comment": "..."},
-                    "feasibility": {"score": x, "comment": "..."},
-                    "clarity": {"score": x, "comment": "..."},
-                    "total_score": x,
-                    "overall_comment": "..."
-                }`;
-                
-                const response = await fetch(DEEPSEEK_API_ENDPOINT, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${DEEPSEEK_API_KEY}`
-                    },
-                    body: JSON.stringify({
-                        model: MODEL_NAME,
-                        messages: [
-                            {
-                                role: "user",
-                                content: prompt
-                            }
-                        ],
-                        temperature: 0.7
-                    })
-                });
-                
-                if (!response.ok) {
-                    throw new Error(`API请求失败: ${response.status}`);
-                }
-                
-                const data = await response.json();
-                const resultText = data.choices[0].message.content;
-                
-                let result;
-                try {
-                    const jsonStart = resultText.indexOf('{');
-                    const jsonEnd = resultText.lastIndexOf('}') + 1;
-                    const jsonString = resultText.substring(jsonStart, jsonEnd);
-                    result = JSON.parse(jsonString);
-                    
-                    const calculatedTotal = 
-                        result.appropriateness.score + 
-                        result.academic_value.score + 
-                        result.practical_significance.score + 
-                        result.feasibility.score + 
-                        result.clarity.score;
-                    
-                    if (calculatedTotal !== result.total_score) {
-                        result.total_score = calculatedTotal;
-                    }
-                    
-                } catch (e) {
-                    throw new Error('无法解析模型返回的结果: ' + e.message);
-                }
-                
-                displaySingleResult(result, topic);
-                
-            } catch (error) {
-                showError('评价过程中出错: ' + error.message, 'single');
-            } finally {
-                document.getElementById('loading-single').style.display = 'none';
-            }
-        }
-        
-        // 显示单个选题评价结果
-        function displaySingleResult(result, topic) {
-            const resultBody = document.getElementById('result-single-body');
-            resultBody.innerHTML = '';
-            
-            addResultRow(resultBody, '范围适切性', result.appropriateness);
-            addResultRow(resultBody, '学术价值', result.academic_value);
-            addResultRow(resultBody, '实践意义', result.practical_significance);
-            addResultRow(resultBody, '可行性', result.feasibility);
-            addResultRow(resultBody, '表述清晰度', result.clarity);
-            
-            document.getElementById('total-score').textContent = result.total_score;
-            document.getElementById('total-comment').textContent = result.overall_comment || '无';
-            
-            document.getElementById('result-single').style.display = 'block';
-        }
-        
-        // 添加结果行
-        function addResultRow(tableBody, dimension, data) {
-            const row = document.createElement('tr');
-            
-            const dimCell = document.createElement('td');
-            dimCell.textContent = dimension;
-            row.appendChild(dimCell);
-            
-            const scoreCell = document.createElement('td');
-            scoreCell.textContent = data.score;
-            row.appendChild(scoreCell);
-            
-            const commentCell = document.createElement('td');
-            commentCell.textContent = data.comment || '无';
-            row.appendChild(commentCell);
-            
-            tableBody.appendChild(row);
-        }
-        
-        // 显示错误信息
-        function showError(message, type) {
-            const errorElement = document.getElementById(`error-${type}`);
-            errorElement.textContent = message;
-            errorElement.style.display = 'block';
-        }
-        
-        // 导入文件
-        async function importFile() {
-            const fileInput = document.getElementById('file-input');
-            const file = fileInput.files[0];
-            
-            if (!file) {
-                showError('请选择文件', 'batch');
-                return;
-            }
-            
-            document.getElementById('error-batch').style.display = 'none';
-            
-            try {
-                // 确保XLSX库已加载
-                await ensureXLSXLoaded();
-                
-                if (typeof XLSX === 'undefined') {
-                    throw new Error('Excel处理库初始化失败');
-                }
-                
-                // 读取文件内容
-                const fileData = await readFileAsArrayBuffer(file);
-                
-                let workbook;
-                try {
-                    workbook = XLSX.read(fileData, { type: 'array' });
-                } catch (e) {
-                    throw new Error('不支持的Excel文件格式: ' + e.message);
-                }
-                
-                if (!workbook.SheetNames || workbook.SheetNames.length === 0) {
-                    throw new Error('Excel文件中没有工作表');
-                }
-                
-                const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
-                const jsonData = XLSX.utils.sheet_to_json(firstSheet, { header: 1 });
-                
-                batchTopics = [];
-                for (let i = 0; i < jsonData.length; i++) {
-                    const cellValue = jsonData[i][0];
-                    if (cellValue !== undefined && cellValue !== null) {
-                        const topic = String(cellValue).trim();
-                        if (topic) {
-                            batchTopics.push(topic);
-                        }
-                    }
-                }
-                
-                if (batchTopics.length === 0) {
-                    throw new Error('文件中没有找到有效的选题（请确保选题在第一列）');
-                }
-                
-                const topicsContainer = document.getElementById('imported-topics');
-                topicsContainer.innerHTML = '';
-                
-                const topicList = document.createElement('ol');
-                batchTopics.forEach(topic => {
-                    const li = document.createElement('li');
-                    li.textContent = topic;
-                    topicList.appendChild(li);
-                });
-                
-                topicsContainer.appendChild(topicList);
-                document.getElementById('import-result').style.display = 'block';
-                
-            } catch (error) {
-                showError('文件导入失败: ' + error.message, 'batch');
-                console.error('导入错误:', error);
-            }
-        }
-        
-        // 批量评价选题
-        async function evaluateBatchTopics() {
-            if (batchTopics.length === 0) {
-                showError('没有可评价的选题', 'batch');
-                return;
-            }
-            
-            document.getElementById('loading-batch').style.display = 'block';
-            document.getElementById('result-batch').style.display = 'none';
-            document.getElementById('error-batch').style.display = 'none';
-            
-            batchResults = [];
-            
-            try {
-                for (let i = 0; i < batchTopics.length; i++) {
-                    const topic = batchTopics[i];
-                    
-                    try {
-                        const prompt = `你是一个教育研究专家，请根据以下评价标准对教研论文选题"${topic}"进行评分和评价：
-                        
-                        评价维度及权重：
-                        1. 范围适切性（15分）：选题是否大小适中，避免过于宽泛或狭窄
-示例评分应用：
-高分（12-14分）：如"小学语文课堂中学生偏离主题行为及应对策略研究——以S市P小学中高年级为例"，范围明确（特定行为+学段+区域），切口小。
-低分（<10分）：如"小学劳动教育现状及提升策略研究"，范围过大，缺乏具体场景或变量聚焦。
-                        2. 学术价值（30分）：选题的理论意义、学术前沿性、创新性
-                        3. 实践意义（20分）：选题对教育实践的指导价值、应用前景、可推广性
-                        4. 可行性（10分）：研究条件、数据获取、研究方法可行性
-                        5. 表述清晰度（25分）：文字的简明性、概念的准确性以及表述的逻辑性
-                        
-                        评分要求：
-                        - 每个维度的评分必须是整数
-                        - 各维度得分不般不给满分，要酌情扣分
-                        - 学术价值维度，选题如果创新性不够，则该项评分最多不超过20分
-                        - 如果是批量导入要区分中选题的优中差的等级差别
-                        - 总分必须等于各维度得分之和
-                        - 评价意见应聚焦在选题及其表述本身，选题反应不出来的内容不必点评
-                        - 如果选题表述存在逻辑问题，或选题的内容领域偏大，问题不聚焦的话，该项评分最多不超过20分
-                        - 凡选题中包含"核心素养""任务群""大单元""大概念"的学术价值维度不超过18分，总分不超过80分
-                        - 如果不是现状调查类的选题，题目表述最好通常有2-3个核心概念，否则选题部分评分不超过80分
-                        - 评价意见应具体、有针对性
-                        - 在"总分"栏的"评价意见"中给出选题及表述的优化建议和示例（示例选题应包含2-3个核心概念，可适当引入教育学、心理学、语言学或文学理论等相关学科的理论或研究视角）：
-示例评分应用：
-
-·原选题 "小学语文课堂互动研究" 过于宽泛，缺乏具体的研究视角、对象或方法，导致研究难以聚焦。建议从以下角度进行细化：
-
-1. 限定研究视角或理论框架
-增加理论支撑[如多模态理论、认知负荷理论、社会建构主义、建构整合模型 (CIM)、大脑阅读回路理论、具身认知与数字阅读、数字写作的 “注意力经济”、动态文本理解理论 (DTRA)、认知负荷与多媒体学习、数字素养与 “游戏化学习”、合作沟通理论、语言预测加工理论、个性化数字阅读、网络化叙事 (Networked Narratives)、深度阅读的神经机制、成就情绪理论 (Control-Value Theory of Achievement Emotions)、直接指导理论 (Direct Instruction)、探究社区框架 (Community of Inquiry Framework)、理想难度理论 (Desirable Difficulties)、自我决定理论 (Self-Determination Theory)、语料库语言学与语言习得 (Corpus Linguistics and Language Acquisition)、情境化学习理论 (Situated Learning Theory)、实践共同体理论 (Communities of Practice)、发现学习理论 (Discovery Learning)、社会文化视角下的行动理论 (Sociocultural Theory of Action)等等]，但要注意理论与选题的适配性。比如：
-"多模态理论视域下小学语文课堂师生互动策略研究"
-"社会建构主义理论下小学语文课堂小组互动模式探究"
-
-2. 聚焦研究对象或学段
-明确研究的具体群体（如新手教师、低年级学生等）。比如：
-"小学低年级语文课堂师生言语互动特征研究"
-"新手型小学语文教师课堂提问互动行为分析"
-
-3. 细化互动类型或具体行为
-限定互动形式（如提问、反馈、非言语互动等）。比如：
-"小学语文课堂教师反馈语对学生参与度的影响研究"
-"小学高年级语文课堂生生互动的有效性研究"
-
-4. 结合现实问题或应用场景
-联系实际教学痛点（如沉默现象、偏离主题行为等）。比如：
-"小学语文课堂学生消极沉默的互动干预策略研究"
-"线上与线下小学语文课堂互动效率的实证研究"
-
-5. 增加研究方法或区域限定
-采用案例研究、实验对比等，或限定研究范围（如某地区、某学校）。比如：
-"上海市X小学语文课堂师生互动模式的个案研究"
-"对话教学法在小学语文课堂互动中的应用效果实验研究"
-
-·修改后选题示例（按优化方向组合）
-理论+对象："社会文化理论下小学语文课堂新手教师互动策略研究"
-行为+问题："小学语文课堂教师提问等待时间对学生互动参与的影响"
-方法+场景："基于视频分析的小学语文优质课师生互动特征研究"
-
-                        
-                        请按照以下JSON格式返回结果：
-                        {
-                            "appropriateness": {"score": x, "comment": "..."},
-                            "academic_value": {"score": x, "comment": "..."},
-                            "practical_significance": {"score": x, "comment": "..."},
-                            "feasibility": {"score": x, "comment": "..."},
-                            "clarity": {"score": x, "comment": "..."},
-                            "total_score": x,
-                            "overall_comment": "..."
-                        }`;
-                        
-                        const response = await fetch(DEEPSEEK_API_ENDPOINT, {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'Authorization': `Bearer ${DEEPSEEK_API_KEY}`
-                            },
-                            body: JSON.stringify({
-                                model: MODEL_NAME,
-                                messages: [
-                                    {
-                                        role: "user",
-                                        content: prompt
-                                    }
-                                ],
-                                temperature: 0.7
-                            })
-                        });
-                        
-                        if (!response.ok) {
-                            throw new Error(`API请求失败: ${response.status}`);
-                        }
-                        
-                        const data = await response.json();
-                        const resultText = data.choices[0].message.content;
-                        
-                        let result;
-                        try {
-                            const jsonStart = resultText.indexOf('{');
-                            const jsonEnd = resultText.lastIndexOf('}') + 1;
-                            const jsonString = resultText.substring(jsonStart, jsonEnd);
-                            result = JSON.parse(jsonString);
-                            
-                            const calculatedTotal = 
-                                result.appropriateness.score + 
-                                result.academic_value.score + 
-                                result.practical_significance.score + 
-                                result.feasibility.score + 
-                                result.clarity.score;
-                            
-                            if (calculatedTotal !== result.total_score) {
-                                result.total_score = calculatedTotal;
-                            }
-                            
-                        } catch (e) {
-                            throw new Error(`无法解析选题"${topic}"的结果: ${e.message}`);
-                        }
-                        
-                        batchResults.push({
-                            topic: topic,
-                            result: result
-                        });
-                        
-                    } catch (error) {
-                        console.error(`评价选题"${topic}"时出错:`, error);
-                        batchResults.push({
-                            topic: topic,
-                            error: error.message
-                        });
-                    }
-                }
-                
-                displayBatchResults();
-                
-            } catch (error) {
-                showError('批量评价过程中出错: ' + error.message, 'batch');
-            } finally {
-                document.getElementById('loading-batch').style.display = 'none';
-            }
-        }
-        
-        // 显示批量评价结果
-        function displayBatchResults() {
-            const tableContainer = document.getElementById('batch-result-table');
-            tableContainer.innerHTML = '';
-            
-            const table = document.createElement('table');
-            table.className = 'result-table';
-            
-            const thead = document.createElement('thead');
-            const headerRow = document.createElement('tr');
-            
-            const headers = [
-                '序号', '选题', '范围适切性', '学术价值', '实践意义', 
-                '可行性', '表述清晰度', '总分', '总评'
-            ];
-            
-            headers.forEach(headerText => {
-                const th = document.createElement('th');
-                th.textContent = headerText;
-                headerRow.appendChild(th);
-            });
-            
-            thead.appendChild(headerRow);
-            table.appendChild(thead);
-            
-            const tbody = document.createElement('tbody');
-            
-            batchResults.forEach((item, index) => {
-                const row = document.createElement('tr');
-                
-                const indexCell = document.createElement('td');
-                indexCell.textContent = index + 1;
-                row.appendChild(indexCell);
-                
-                const topicCell = document.createElement('td');
-                topicCell.textContent = item.topic;
-                row.appendChild(topicCell);
-                
-                if (item.error) {
-                    const errorCell = document.createElement('td');
-                    errorCell.colSpan = headers.length - 2;
-                    errorCell.textContent = '评价失败: ' + item.error;
-                    errorCell.style.color = '#e74c3c';
-                    row.appendChild(errorCell);
-                } else {
-                    const result = item.result;
-                    
-                    addScoreCell(row, result.appropriateness.score);
-                    addScoreCell(row, result.academic_value.score);
-                    addScoreCell(row, result.practical_significance.score);
-                    addScoreCell(row, result.feasibility.score);
-                    addScoreCell(row, result.clarity.score);
-                    
-                    const totalCell = document.createElement('td');
-                    totalCell.textContent = result.total_score;
-                    row.appendChild(totalCell);
-                    
-                    const commentCell = document.createElement('td');
-                    commentCell.textContent = result.overall_comment || '无';
-                    row.appendChild(commentCell);
-                }
-                
-                tbody.appendChild(row);
-            });
-            
-            table.appendChild(tbody);
-            tableContainer.appendChild(table);
-            document.getElementById('result-batch').style.display = 'block';
-        }
-        
-        // 添加分数单元格
-        function addScoreCell(row, score) {
-            const cell = document.createElement('td');
-            cell.textContent = score;
-            row.appendChild(cell);
-        }
-        
-        // 导出到Excel
-        async function exportToExcel() {
-            if (batchResults.length === 0) {
-                showError('没有可导出的结果', 'batch');
-                return;
-            }
-            
-            try {
-                // 确保XLSX库已加载
-                await ensureXLSXLoaded();
-                
-                if (typeof XLSX === 'undefined') {
-                    throw new Error('Excel处理库未加载');
-                }
-                
-                const wb = XLSX.utils.book_new();
-                const data = [];
-                
-                data.push([
-                    '序号', '选题', '范围适切性', '学术价值', '实践意义', 
-                    '可行性', '表述清晰度', '总分', '总评'
-                ]);
-                
-                batchResults.forEach((item, index) => {
-                    if (item.error) {
-                        data.push([
-                            index + 1,
-                            item.topic,
-                            '评价失败: ' + item.error
-                        ]);
-                    } else {
-                        const result = item.result;
-                        data.push([
-                            index + 1,
-                            item.topic,
-                            result.appropriateness.score,
-                            result.academic_value.score,
-                            result.practical_significance.score,
-                            result.feasibility.score,
-                            result.clarity.score,
-                            result.total_score,
-                            result.overall_comment || '无'
-                        ]);
-                    }
-                });
-                
-                const ws = XLSX.utils.aoa_to_sheet(data);
-                XLSX.utils.book_append_sheet(wb, ws, '选题评价结果');
-                
-                try {
-                    // 尝试标准导出方式
-                    XLSX.writeFile(wb, '教研论文选题评价结果.xlsx');
-                } catch (e) {
-                    // 回退到Blob方式
-                    console.log('标准导出失败，尝试Blob方式:', e);
-                    const wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
-                    const blob = new Blob([wbout], { type: 'application/octet-stream' });
-                    const url = URL.createObjectURL(blob);
-                    const a = document.createElement('a');
-                    a.href = url;
-                    a.download = '教研论文选题评价结果.xlsx';
-                    document.body.appendChild(a);
-                    a.click();
-                    setTimeout(() => {
-                        document.body.removeChild(a);
-                        URL.revokeObjectURL(url);
-                    }, 100);
-                }
-                
-            } catch (error) {
-                showError('导出Excel失败: ' + error.message, 'batch');
-                console.error('导出错误:', error);
-            }
-        }
-
-        // 智能生成选题
-        async function generateTopics() {
-            const keyword1 = document.getElementById('keyword1').value.trim();
-            const keyword2 = document.getElementById('keyword2').value.trim();
-            const keyword3 = document.getElementById('keyword3').value.trim();
-            
-            if (!keyword1) {
-                showError('请至少输入一个关键词', 'generate');
-                return;
-            }
-            
-            document.getElementById('loading-generate').style.display = 'block';
-            document.getElementById('generated-topics').style.display = 'none';
-            document.getElementById('error-generate').style.display = 'none';
-            
-            try {
-                const keywords = [keyword1];
-                if (keyword2) keywords.push(keyword2);
-                if (keyword3) keywords.push(keyword3);
-                
-                const prompt = `你是一个教育研究专家，请根据用户提供的关键词生成8个教研论文参考选题。要求：
-                
-                1. 选题应围绕关键词展开，体现关键词涉及的学科理论和知识
-                2. 每个选题最好包含2-3个变量（如影响因素、对比维度等）
-                3. 其中2个选题应适当引入教育学、心理学、语言学、文学理论、社会学、哲学等相关学科的前沿理论视角
-                4. 避免使用"多元智能"、"核心素养"、"交际语境"、"任务群"、"大概念"、"大单元"等常见理论
-                5. 选题表述应清晰、具体，避免过于宽泛
-                6. 选题应具有一定的学术价值和实践意义
-                7. 第5个选题以“内容分析”为主，第6个选题以“调查研究”为主
-                8. 第7个选题以“课例/案例研究”为主，第8个选题以“课堂观察”为主
-                
-                用户提供的关键词：${keywords.join('、')}
-                
-                请按照以下格式返回结果（Markdown格式）：
-                ### 生成的参考选题
-                1. [选题1题目] <span class="theory-tag">理论</span>（可选：如果引入了跨学科理论则添加此标记）
-                   - 简要说明选题的价值和特点
-                2. [选题2题目]
-                   - 简要说明选题的价值和特点
-                ...`;
-                
-                const response = await fetch(DEEPSEEK_API_ENDPOINT, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${DEEPSEEK_API_KEY}`
-                    },
-                    body: JSON.stringify({
-                        model: MODEL_NAME,
-                        messages: [
-                            {
-                                role: "user",
-                                content: prompt
-                            }
-                        ],
-                        temperature: 0.7
-                    })
-                });
-                
-                if (!response.ok) {
-                    throw new Error(`API请求失败: ${response.status}`);
-                }
-                
-                const data = await response.json();
-                const resultText = data.choices[0].message.content;
-                
-                displayGeneratedTopics(resultText, keywords);
-                
-            } catch (error) {
-                showError('生成选题过程中出错: ' + error.message, 'generate');
-            } finally {
-                document.getElementById('loading-generate').style.display = 'none';
-            }
-        }
-        
-        // 显示生成的选题
-        function displayGeneratedTopics(resultText, keywords) {
-            const topicList = document.getElementById('topic-list');
-            topicList.innerHTML = '';
-            
-            // 简单解析Markdown格式的结果
-            const lines = resultText.split('\n');
-            let currentTopic = null;
-            
-            for (let line of lines) {
-                line = line.trim();
-                
-                if (line.startsWith('###')) {
-                    continue; // 跳过标题行
-                }
-                
-                if (line.match(/^\d+\.\s*\[?([^\]]+)\]?/)) {
-                    // 新选题开始
-                    if (currentTopic) {
-                        addTopicToDisplay(currentTopic, topicList, keywords);
-                    }
-                    
-                    const topicText = line.replace(/^\d+\.\s*\[?([^\]]*)\]?\s*/, '$1');
-                    currentTopic = {
-                        text: topicText,
-                        hasTheory: line.includes('<span class="theory-tag">理论</span>'),
-                        description: ''
-                    };
-                } else if (line.startsWith('-') && currentTopic) {
-                    // 选题描述
-                    currentTopic.description = line.substring(1).trim();
-                }
-            }
-            
-            // 添加最后一个选题
-            if (currentTopic) {
-                addTopicToDisplay(currentTopic, topicList, keywords);
-            }
-            
-            document.getElementById('generated-topics').style.display = 'block';
-        }
-        
-        // 添加选题到显示区域
-        function addTopicToDisplay(topic, container, keywords) {
-            const topicDiv = document.createElement('div');
-            topicDiv.className = 'topic-item';
-            
-            const topicTitle = document.createElement('div');
-            topicTitle.style.fontWeight = 'bold';
-            topicTitle.style.marginBottom = '5px';
-            
-            // 高亮关键词
-            let highlightedText = topic.text;
-            keywords.forEach(keyword => {
-                if (keyword) {
-                    const regex = new RegExp(keyword, 'g');
-                    highlightedText = highlightedText.replace(regex, `<span style="color: #e74c3c; font-weight: bold;">${keyword}</span>`);
-                }
-            });
-            
-            topicTitle.innerHTML = highlightedText;
-            
-            if (topic.hasTheory) {
-                const theoryTag = document.createElement('span');
-                theoryTag.className = 'theory-tag';
-                theoryTag.textContent = '理论';
-                topicTitle.appendChild(theoryTag);
-            }
-            
-            // 添加复制按钮
-            const copyBtn = document.createElement('button');
-            copyBtn.className = 'copy-btn';
-            copyBtn.textContent = '复制';
-            copyBtn.onclick = () => {
-                copyToClipboard(topic.text);
-                copyBtn.textContent = '已复制';
-                setTimeout(() => {
-                    copyBtn.textContent = '复制';
-                }, 2000);
-            };
-            topicTitle.appendChild(copyBtn);
-            
-            topicDiv.appendChild(topicTitle);
-            
-            if (topic.description) {
-                const desc = document.createElement('div');
-                desc.textContent = topic.description;
-                desc.style.fontSize = '0.9em';
-                desc.style.color = '#666';
-                topicDiv.appendChild(desc);
-            }
-            
-            container.appendChild(topicDiv);
-        }
-        
-        // 复制文本到剪贴板
-        function copyToClipboard(text) {
-            const textarea = document.createElement('textarea');
-            textarea.value = text;
-            document.body.appendChild(textarea);
-            textarea.select();
-            document.execCommand('copy');
-            document.body.removeChild(textarea);
-        }
-
-        // 初始化检查
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('初始化检查XLSX库...');
-            if (typeof XLSX === 'undefined') {
-                console.log('XLSX未定义，尝试加载');
-                ensureXLSXLoaded().catch(e => {
-                    console.error('XLSX库加载失败:', e);
-                    document.querySelector('button[onclick="importFile()"]').disabled = true;
-                    document.querySelector('button[onclick="exportToExcel()"]').disabled = true;
-                    showError('Excel处理库加载失败，相关功能不可用', 'batch');
-                });
-            }
-        });
+        // 可选：添加5秒后自动跳转
+        setTimeout(() => {
+            console.log("即将自动跳转到新页面...");
+        }, 5000);
     </script>
 </body>
 </html>
